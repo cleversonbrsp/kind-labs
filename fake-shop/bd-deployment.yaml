@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+spec:
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+      - name: postgres
+        image: postgres:13.16
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+          - containerPort: 5432
+        env:
+          - name: POSTGRES_USER
+            value: ecommerce
+          - name: POSTGRES_PASSWORD
+            value: Pg1234
+          - name: POSTGRES_DB
+            value: ecommerce

@@ -1,0 +1,13 @@
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: fake-shop
+spec:
+  type: LoadBalancer
+  selector:
+    app: fake-shop
+  ports:
+  - port: 80 # recebe na porta 80 e redireciona para a porta 5000 do container
+    targetPort: 5000
+    nodePort: 30000 # remover essa linha é opcional e não é necessário para o funcionamento do serviço
