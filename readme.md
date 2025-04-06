@@ -86,3 +86,21 @@ kubectl apply -f metallb-config.yaml
 ---
 
 ✅ **Agora seus Services do tipo LoadBalancer vão receber um IP!**
+
+## Dica: evitar esses delays com kind load docker-image
+
+**Se a imagem fake-shop for local (você buildou na sua máquina), o Kind não vê ela automaticamente, porque os nodes estão em containers separados.**
+
+Use:
+```bash
+kind load docker-image thefly72003/fake-shop:v1 --name kind-metallb
+```
+Isso faz com que a imagem local seja "injetada" no Kind e ele não precise puxar da internet.
+```bash
+➜  fake-shop git:(main) ✗ kind get clusters
+kind-metallb
+➜  fake-shop git:(main) ✗ kind load docker-image thefly72003/fake-shop:v1 --name kind-metallb
+
+Image: "thefly72003/fake-shop:v1" with ID "sha256:348874edcd4f7efe1295f67d5960fda189e5ccd26ac7d73ffd6118b22ee96a8f" not yet present on node "kind-metallb-control-plane", loading...
+➜  fake-shop git:(main) ✗
+```
