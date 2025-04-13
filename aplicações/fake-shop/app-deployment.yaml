@@ -3,6 +3,8 @@ kind: Deployment
 metadata:
   name: fake-shop
   namespace: fake-shop
+  labels:
+    app: fake-shop
 spec:
   selector:
     matchLabels:

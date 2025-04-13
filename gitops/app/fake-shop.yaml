@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: fake-shop
+spec:
+  destination:
+    namespace: fake-shop
+    server: https://kubernetes.default.svc
+  source:
+    path: aplicações/fake-shop
+    repoURL: git@github.com:cleversonbrsp/kind-labs.git
+    targetRevision: HEAD
+  sources: []
+  project: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions: []
